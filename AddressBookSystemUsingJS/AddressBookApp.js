@@ -157,6 +157,11 @@ class AddressBook {
     //Print the result
     console.log(`Contact ${firstName} ${lastName} deleted successfully!\n`);
   }
+
+  //Create a function to find the count the contact
+  getNumberOfContacts() {
+    return this.contacts.reduce((count) => count + 1, 0);
+  }
 }
 
 //Create an object to store the Multiple address books
@@ -217,12 +222,15 @@ addressBook1.findAndEditContact("Anuj","Sharma",{ city:"Jaipur",
   state :"Rajasthan"
 });
 
-
-//Call the function to delete contact
 addressBook1.findAndDeleteContact("Anuj","Sharma");
 
-//call the display method 
-console.log("After Deleting");
-addressBook1.displayAllContacts();
+//Print the total number of contact
+console.log(`Total Number of Contact in ${addressBook1.addressBookName}: ${addressBook1.getNumberOfContacts()}`);
+console.log(`Total Number of Contact in ${addressBook2.addressBookName}: ${addressBook2.getNumberOfContacts()}`);
+
+
+
+
+
 
 
