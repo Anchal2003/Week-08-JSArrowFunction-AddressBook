@@ -136,7 +136,26 @@ class AddressBook {
     if (updatedDetails.email) contact.email = updatedDetails.email;
 
     //Print the  statement if contact updated 
-    console.log("Contact updated successfully!");
+    console.log("Contact updated successfully!\n");
+  }
+
+  //Create a function to find the contact and delete it
+  findAndDeleteContact(firstName, lastName) {
+    //Create a const variable to find the contact
+    const contactIndex = this.contacts.findIndex(
+      (c) => c.firstName === firstName && c.lastName === lastName
+    );
+
+    //Check the index is valid
+    if (contactIndex === -1) {
+      console.log("Contact not found.");
+      return;
+    }
+
+    //Delete the contact
+    this.contacts.splice(contactIndex, 1);
+    //Print the result
+    console.log(`Contact ${firstName} ${lastName} deleted successfully!\n`);
   }
 }
 
@@ -198,7 +217,12 @@ addressBook1.findAndEditContact("Anuj","Sharma",{ city:"Jaipur",
   state :"Rajasthan"
 });
 
-//Call the function to print details
-console.log("After updating....");
+
+//Call the function to delete contact
+addressBook1.findAndDeleteContact("Anuj","Sharma");
+
+//call the display method 
+console.log("After Deleting");
 addressBook1.displayAllContacts();
+
 
