@@ -104,11 +104,39 @@ class AddressBook {
     }
 
     //print the statement
-    console.log("All Contacts are: \n");
+    console.log(`\nAll Contacts of ${this.addressBookName} are: \n`);
     this.contacts.forEach((contact) => {
       //Call the method
       contact.printContact();
     });
+  }
+
+  //Create a function to find and edit the details
+  findAndEditContact(firstName, lastName, updatedDetails) {4
+    //Create a const variable to find the contact
+    const contact = this.contacts.find(
+      (c) => c.firstName === firstName && c.lastName === lastName
+    );
+
+    //Check the contact and return the result
+    if (!contact) {
+      //print the statement if contact is not found
+      console.log("Contact not found.");
+      return;
+    }
+
+    //check the updatedDetails and edit the details
+    if (updatedDetails.firstName) contact.firstName = updatedDetails.firstName;
+    if (updatedDetails.lastName) contact.lastName = updatedDetails.lastName;
+    if (updatedDetails.address) contact.address = updatedDetails.address;
+    if (updatedDetails.city) contact.city = updatedDetails.city;
+    if (updatedDetails.state) contact.state = updatedDetails.state;
+    if (updatedDetails.zip) contact.zip = updatedDetails.zip;
+    if (updatedDetails.phoneNumber) contact.phoneNumber = updatedDetails.phoneNumber;
+    if (updatedDetails.email) contact.email = updatedDetails.email;
+
+    //Print the  statement if contact updated 
+    console.log("Contact updated successfully!");
   }
 }
 
@@ -126,18 +154,15 @@ addressBookList.push(addressBook2);//add to addressBookList
 //Use try block
 try {
   //Create an object of contact class
-  const contact1 = new Contact(
-    "Anchal",
-    "Sahu",
-    "Green Park Colony",
-    "Bhopal",
-    "Madhya Pradesh",
-    "462001",
-    "4589673589",
-    "Sahuanchal22@gmail.com"
-  );
+  const contact1 = new Contact("Anchal","Sahu","Green Park Colony","Bhopal","Madhya Pradesh","462001","4589673589","Sahuanchal22@gmail.com");
   //Call the method to add contact
   addressBook1.addContact(contact1);
+
+  //Create an object of contact class
+  const contact3 = new Contact("Anuj","Sharma","Arera colony","Indore","Madhya Pradesh","568491","2587248963","anuj58@gmail.com");
+  //Call the method to add contact
+  addressBook1.addContact(contact3);
+
 } catch (error) {
   //Catch block to handle the error
   //Print the error
@@ -147,18 +172,14 @@ try {
 //USe try block
 try {
   //Create an object of contact class
-  const contact2 = new Contact(
-    "Nilesh",
-    "Yadav",
-    "Arjun Nagar",
-    "Mandideep",
-    "Madhya Pradesh",
-    "656651",
-    "5653414865",
-    "yadav3165@gmail.com"
-  );
+  const contact2 = new Contact("Nilesh","Yadav","Arjun Nagar","Mandideep","Madhya Pradesh","656651","5653414865","yadav3165@gmail.com");
   //Call the method to add contact
   addressBook2.addContact(contact2);
+
+  //Create an object of contact class
+  const contact4 = new Contact("Aman","Rajput","Amedkar Nagar","PrayagRaj","Uttar Pradesh","258964","7583414865","AmanR865@gmail.com");
+  //Call the method to add contact
+  addressBook2.addContact(contact4);
 } catch (error) {
   //Catch block to handle the error
   //Print the error
@@ -170,3 +191,14 @@ addressBookList.forEach((val) => {
   //Call the display method
   val.displayAllContacts();
 });
+
+//Call the method to find and edit the details
+console.log("\nUpdate contact: \n");
+addressBook1.findAndEditContact("Anuj","Sharma",{ city:"Jaipur",
+  state :"Rajasthan"
+});
+
+//Call the function to print details
+console.log("After updating....");
+addressBook1.displayAllContacts();
+
